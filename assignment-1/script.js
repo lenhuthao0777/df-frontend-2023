@@ -3,11 +3,13 @@ const $ = document.querySelector.bind(document);
 
 const $$ = document.querySelectorAll.bind(document);
 
-const dataLocal = JSON.parse(localStorage.getItem('data')) || [];
+let dataLocal = JSON.parse(localStorage.getItem('data')) || [];
 
 const tableContent = $('#table-content');
 
 const form = $('#form');
+
+const inputSearch = $('.input-search');
 
 const btnAdd = $('#btn-add');
 
@@ -52,6 +54,21 @@ const tableData = [
   },
 ];
 
+// handle search
+inputSearch.addEventListener('keyup', (e) => {
+  const target = e.target.value;
+  const newData = dataLocal.filter((item) => {
+    return (
+      item.name.toLowerCase().includes(target) ||
+      item.name.includes(target) ||
+      item.name.toUpperCase().includes(target)
+    );
+  });
+
+  displayTableData(newData);
+});
+// end handle search
+
 // handle set data local
 const handleSetDataLocal = (data) => {
   localStorage.setItem('data', JSON.stringify(data));
@@ -65,9 +82,10 @@ if (!dataLocal.length) {
 
 // end handle set data local
 
-const items = dataLocal
-  .map(
-    (item) => `
+const displayTableData = (data = []) => {
+  const dataTable = data
+    .map(
+      (item) => `
   <tr id="${item.id}">
     <td>${item.name}</td>
     <td>${item.author}</td>
@@ -75,10 +93,13 @@ const items = dataLocal
     <td class="action-item" id="${item.name}__${item.id}">Delete</td>
   </tr>
   `
-  )
-  .join('');
+    )
+    .join('');
 
-tableContent.innerHTML = items;
+  tableContent.innerHTML = dataTable;
+};
+
+displayTableData(dataLocal);
 
 // handle delete item
 const deleteActions = document.querySelectorAll('.action-item');
