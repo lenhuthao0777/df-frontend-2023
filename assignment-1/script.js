@@ -58,11 +58,7 @@ const tableData = [
 inputSearch.addEventListener('keyup', (e) => {
   const target = e.target.value;
   const newData = dataLocal.filter((item) => {
-    return (
-      item.name.toLowerCase().includes(target) ||
-      item.name.includes(target) ||
-      item.name.toUpperCase().includes(target)
-    );
+    return item.name.toLowerCase().includes(target.toLowerCase());
   });
 
   displayTableData(newData);
