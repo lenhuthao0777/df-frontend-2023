@@ -5,10 +5,135 @@
     <meta name="viewport" content="width=device-width" />
     <title>Bookstore</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
 
   <body>
-    Hello world
+    <main>
+      <header class="header shadow">
+        <div class="header-content flex items-center justify-between container">
+          <p class="font-extrabold text-lg">Bookstore</p>
+
+          <p class="flex items-center">
+            <span
+              class="user text-md flex items-center justify-center rounded-full"
+              ><i class="fa-regular fa-user"></i
+            ></span>
+            <span class="user-name text-base">Jayco</span>
+          </p>
+        </div>
+      </header>
+
+      <section class="container content">
+        <div class="action flex items-center justify-end">
+          <input class="input-search" placeholder="Search books" type="text" />
+          <button id="btn-add" class="btn btn-add rounded font-semibold">
+            Add
+          </button>
+        </div>
+
+        <div class="table">
+          <table class="w-full">
+            <thead>
+              <tr>
+                <th align="left" class="column-1">Name</th>
+                <th align="left" class="column-2">Author</th>
+                <th align="left" class="column-3">Topic</th>
+                <th align="left" class="column-4">Action</th>
+              </tr>
+            </thead>
+            <tbody id="table-content"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Modal Add -->
+      <div class="modal modal-add">
+        <div class="modal-content shadow rounded-sm">
+          <div class="flex items-center justify-between">
+            <p class="text-lg font-extrabold">Add book</p>
+            <div id="btn-close">
+              <span class="text-md cursor-pointer"
+                ><i class="fa-solid fa-x"></i
+              ></span>
+            </div>
+          </div>
+
+          <form id="form" class="mt-10">
+            <div class="flex flex-col mb-10">
+              <span class="mb-2">Name</span>
+              <input
+                class="input-filed"
+                type="text"
+                id="name"
+                placeholder="Enter name"
+                name="name"
+              />
+            </div>
+
+            <div class="flex flex-col mb-10">
+              <span class="mb-2">Author</span>
+              <input
+                class="input-filed"
+                type="text"
+                id="author"
+                placeholder="Enter author"
+                name="author"
+              />
+            </div>
+
+            <div class="flex flex-col">
+              <span class="mb-2">Topic</span>
+              <select class="select-topic" id="topic" name="topic">
+                <option value=""></option>
+                <option value="Programming">Programming</option>
+                <option value="Database">Database</option>
+                <option value="Devops">Devops</option>
+              </select>
+            </div>
+
+            <div class="flex justify-end mt-10">
+              <button class="btn rounded" type="submit">Create</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Modal confirm -->
+      <div class="modal modal-confirm">
+        <div class="modal-content rounded shadow">
+          <div>
+            <p class="text-lg font-extrabold text-center">Delete book</p>
+            <div id="close-modal__confirm">
+              <span class="close text-md cursor-pointer"
+                ><i class="fa-solid fa-x"></i
+              ></span>
+            </div>
+          </div>
+          <div class="text-center mt-10">
+            <p>Do you want to delete</p>
+            <span id="name-delete" class="font-extrabold">Refactoring</span> book?
+          </div>
+
+          <div class="flex items-center justify-center mt-10">
+            <button
+              id="btn-cancel"
+              class="btn btn-cancel font-semibold rounded"
+            >
+              Cancel
+            </button>
+            <button id="btn-confirm" class="btn rounded">Delete</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
     <script src="script.js"></script>
   </body>
 </html>

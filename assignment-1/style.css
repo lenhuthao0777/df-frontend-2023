@@ -1,4 +1,386 @@
-html {
-  height: 100%;
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+  background-color: #F6F8F9;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.9);
+  font-family: 'Courier New', Courier, monospace;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: auto;
+}
+
+
+.container {
+  min-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.shadow {
+  box-shadow: 0 0 12px #888888;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.font-semibold {
+  font-weight: 500;
+}
+
+.font-extrabold {
+  font-weight: 800;
+}
+
+.text-sm {
+  font-size: 12px;
+}
+
+.text-base {
+  font-size: 16px;
+}
+
+.text-md {
+  font-size: 18px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-lg {
+  font-size: 24px
+}
+
+.w-full {
   width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.w-screen {
+  width: 100vw;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.rounded {
+  border-radius: 4px;
+}
+
+.rounded-sm {
+  border-radius: 8px;
+}
+
+.rounded-md {
+  border-radius: 12px;
+}
+
+.rounded-full {
+  border-radius: 100%;
+}
+
+.mt-2 {
+  margin-top: 4px;
+}
+
+.mt-10 {
+  margin-top: 20px;
+}
+
+.mb-2 {
+  margin-bottom: 4px;
+}
+
+.mb-10 {
+  margin-bottom: 20px;
+}
+
+.header {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.user {
+  width: 50px;
+  height: 50px;
+  background-color: #E3E7ED;
+}
+
+.user-name {
+  margin-left: 4px;
+}
+
+.content {
+  margin-top: 24px;
+}
+
+.input-search {
+  padding: 8px;
+  width: 250px;
+  color: #d3d3d3;
+  margin-right: 8px;
+  border: 1px solid #d3d3d3;
+  border-radius: 2px;
+}
+
+.btn {
+  padding: 7px 24px;
+  background-color: rgba(211, 58, 90, 1);
+  border: 1px solid rgba(211, 58, 90, 1);
+  color: rgba(255, 255, 255, 1);
+  cursor: pointer;
+  transition: 0.2s all ease-in;
+}
+
+.btn:hover {
+  background-color: rgba(211, 58, 90, .8);
+}
+
+.table {
+  margin-top: 24px;
+}
+
+.column-1 {
+  width: 40%;
+}
+
+.column-2 {
+  width: 20%;
+}
+
+.column-3 {
+  width: 20%;
+}
+
+.column-4 {
+  width: 20%;
+}
+
+th {
+  border: 1px solid #C9D3DE;
+  padding: 8px 10px;
+  font-weight: 800;
+}
+
+td {
+  border: 1px solid #C9D3DE;
+  padding: 8px 10px;
+}
+
+.action-item {
+  color: red;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-add {
+  display: none;
+}
+
+.modal-content {
+  width: 500px;
+  min-height: 200px;
+  padding: 24px;
+  background-color: white;
+  position: relative;
+  margin: 150px auto;
+}
+
+.input-filed {
+  padding: 8px;
+}
+
+.select-topic {
+  padding: 8px;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.modal-confirm {
+  display: none;
+}
+
+.btn-cancel {
+  background-color: rgba(255, 255, 255, 1);
+  color: #333333;
+  border: 1px solid #333333;
+  margin-right: 10px;
+}
+
+.btn-cancel:hover {
+  background-color: rgba(0, 0, 0, 0.2);
 }
