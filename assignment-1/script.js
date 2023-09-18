@@ -111,13 +111,17 @@ tableContent.addEventListener(
     if (className === 'action-item') {
       modalConfirm.style.display = 'block';
 
+      let content = e.target.id.split('__');
+
       const ele = e.target.parentElement;
 
-      let id = e.target.id.split('__');
+      const nameDelete = $('#name-delete');
+
+      nameDelete.innerText = content[0];
 
       btnConfirm.addEventListener('click', (e) => {
-        if (id) {
-          handleRemoveRow(id[1]);
+        if (content) {
+          handleRemoveRow(content[1]);
           ele.remove();
         }
 
@@ -125,7 +129,7 @@ tableContent.addEventListener(
       });
 
       btnCancel.addEventListener('click', () => {
-        id = null;
+        content = null;
         modalConfirm.style.display = 'none';
       });
     }
