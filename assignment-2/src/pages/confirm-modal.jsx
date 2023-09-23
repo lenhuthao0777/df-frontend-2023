@@ -1,16 +1,31 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 
 import { Button } from 'components/ui/button';
 import Modal from 'components/ui/modal';
 import { useBook } from 'providers/book-provider';
+import BookService from 'api/book';
 
 const ConfirmModal = () => {
   const { state, dispatch } = useBook();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const isOpen = state.isOpen && state.type === 'confirmModal';
 
   const handleClose = () => {
     dispatch({ type: 'onClose' });
+  };
+
+  const handleDelete = async () => {
+    setIsLoading(true);
+    try {
+      await BookService.destroy(state.bookId);
+      setIsLoading(false);
+      handleClose();
+      window.location.reload();
+    } catch (error) {
+      return error;
+    }
   };
 
   return (
@@ -27,11 +42,14 @@ const ConfirmModal = () => {
           <div className='flex items-center justify-evenly mt-10'>
             <Button
               variant='outline'
+              disable={isLoading}
               onClick={() => dispatch({ type: 'onClose' })}
             >
               Cancel
             </Button>
-            <Button variant='danger'>Delete</Button>
+            <Button disable={isLoading} variant='danger' onClick={handleDelete}>
+              Delete
+            </Button>
           </div>
         </div>
       </Modal>

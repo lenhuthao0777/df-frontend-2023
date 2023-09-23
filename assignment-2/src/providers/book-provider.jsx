@@ -1,4 +1,3 @@
-import { v4 as uuid } from 'uuid';
 import { createContext, useContext, useReducer } from 'react';
 
 const BookContext = createContext(null);
@@ -6,29 +5,13 @@ const BookContext = createContext(null);
 export const useBook = () => useContext(BookContext);
 
 const initialState = {
-  books: [
-    {
-      id: uuid(),
-      name: 'Refactoring',
-      author: 'Martin fowler',
-      topic: 'Programming',
-    },
-    {
-      id: uuid(),
-      name: 'Designing Data-Intensive Applications',
-      author: 'Martin Kleppmann',
-      topic: 'Database',
-    },
-    {
-      id: uuid(),
-      name: 'The Phoenix Project',
-      author: 'Gene Kim',
-      topic: 'Devops',
-    },
-  ],
+  books: [],
+  totalPage: null,
+  isLoading: false,
   type: '',
   isOpen: false,
   name: '',
+  bookId: null,
 };
 
 const reducer = (state, action) => {
@@ -45,12 +28,19 @@ const reducer = (state, action) => {
         type: '',
         isOpen: false,
       };
+    case 'setBooks':
+      return {
+        ...state,
+        books: action.payload.books,
+        totalPage: action.payload.totalPage,
+      };
     case 'confirm':
       return {
         ...state,
         type: 'confirmModal',
         isOpen: true,
         name: action.payload.name,
+        bookId: action.payload.bookId,
       };
 
     default:

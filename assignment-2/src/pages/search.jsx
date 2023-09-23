@@ -7,7 +7,7 @@ const Search = () => {
 
   return (
     <div className='flex items-center justify-end'>
-      <Input className='w-60' />
+      <Input className='w-60' placeholder='Search by name' />
       <Button
         variant='danger'
         className='ml-2'

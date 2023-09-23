@@ -1,3 +1,4 @@
+import BookService from 'api/book';
 import { Button } from 'components/ui/button';
 import { Input } from 'components/ui/input';
 import Modal from 'components/ui/modal';
@@ -7,7 +8,10 @@ import { useState } from 'react';
 
 const AddModal = () => {
   const { state, dispatch } = useBook();
+
   const [values, setValues] = useState({});
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const isOpen = state.isOpen && state.type === 'addBook';
 
@@ -41,9 +45,17 @@ const AddModal = () => {
     }));
   };
 
-  const handleForm = (e) => {
-    e.preventDefault();
-    console.log(values);
+  const handleForm = async (e) => {
+    setIsLoading(true);
+    try {
+      e.preventDefault();
+      await BookService.store(values);
+      setIsLoading(false);
+      handleClose();
+      window.location.reload();
+    } catch (error) {
+      return error;
+    }
   };
 
   return (

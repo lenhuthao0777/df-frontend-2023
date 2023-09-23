@@ -1,11 +1,15 @@
-import { BookProvider } from 'providers/book-provider';
 import './App.css';
 import Book from './pages/book';
+import { BookProvider } from 'providers/book-provider';
+import { ThemeProvider } from 'providers/theme-provider';
+
 function App() {
   return (
-    <BookProvider>
-      <Book />
-    </BookProvider>
+    <ThemeProvider>
+      <BookProvider>
+        <Book />
+      </BookProvider>
+    </ThemeProvider>
   );
 }
 

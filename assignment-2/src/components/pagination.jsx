@@ -1,7 +1,7 @@
 import { cn } from 'lib/utils';
 import { useState } from 'react';
-
-const Pagination = ({ currPage, totalPage, onChange }) => {
+import { ChevronRight, ChevronLeft } from 'lucide-react';
+const Pagination = ({ currPage, totalPage, onChange, isLoading }) => {
   const [page, setPage] = useState(currPage);
 
   const pages = [...Array(totalPage).keys()].map((x) => x + 1);
@@ -26,6 +26,8 @@ const Pagination = ({ currPage, totalPage, onChange }) => {
     });
   };
 
+  if (!totalPage) return null;
+
   return (
     <div className='flex justify-end w-full mt-5'>
       <div className='flex items-center'>
@@ -33,35 +35,38 @@ const Pagination = ({ currPage, totalPage, onChange }) => {
           onClick={prePage}
           disabled={page === 1}
           className={cn(
-            'bg-white p-2 cursor-pointer shadow rounded-l-md border-r border-gray-300 transition hover:bg-white/50',
-            page === 1 && 'disabled:bg-white/10 disabled:cursor-no-drop'
+            'bg-white text-zinc-700 p-2 cursor-pointer shadow rounded-l-md border-r border-gray-300 transition hover:bg-rose-500 hover:text-white',
+            page === 1 &&
+              'disabled:bg-white/10 disabled:cursor-no-drop disabled:hover:text-zinc-700'
           )}
         >
-          Previous
+          <ChevronLeft className='w-5 h-5' />
         </button>
 
         {pages.map((item) => (
-          <p
+          <button
             key={item}
             onClick={() => onChangePage(item)}
+            disabled={isLoading}
             className={cn(
-              'py-2 px-4 border-r cursor-pointer border-gray-300 bg-white transition hover:bg-rose-500 hover:text-white',
+              'py-2 px-4 text-zinc-700 text-sm border-r cursor-pointer border-gray-300 bg-white transition hover:bg-rose-500 hover:text-white',
               page === item && 'bg-rose-500 text-white'
             )}
           >
             {item}
-          </p>
+          </button>
         ))}
 
         <button
           onClick={nextPage}
           disabled={page === totalPage}
           className={cn(
-            'bg-white p-2 shadow cursor-pointer rounded-r-md transition hover:bg-white/50',
-            page === totalPage && 'disabled:bg-white/40 disabled:cursor-no-drop'
+            'bg-white text-zinc-700 p-2 shadow cursor-pointer rounded-r-md transition hover:bg-rose-500 hover:text-white',
+            page === totalPage &&
+              'disabled:bg-white/40 disabled:cursor-no-drop disabled:hover:text-zinc-700'
           )}
         >
-          Next
+          <ChevronRight className='w-5 h-5' />
         </button>
       </div>
     </div>
