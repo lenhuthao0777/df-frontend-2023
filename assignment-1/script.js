@@ -155,6 +155,8 @@ btnClose.addEventListener('click', () => {
 
   inputTopic.value = '';
 
+  window.location.reload();
+
   modalAdd.style.display = 'none';
 });
 
