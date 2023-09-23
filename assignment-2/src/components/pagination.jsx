@@ -1,6 +1,7 @@
 import { cn } from 'lib/utils';
 import { useState } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
+
 const Pagination = ({ currPage, totalPage, onChange, isLoading }) => {
   const [page, setPage] = useState(currPage);
 
@@ -35,7 +36,7 @@ const Pagination = ({ currPage, totalPage, onChange, isLoading }) => {
           onClick={prePage}
           disabled={page === 1}
           className={cn(
-            'bg-white text-zinc-700 p-2 cursor-pointer shadow rounded-l-md border-r border-gray-300 transition hover:bg-rose-500 hover:text-white',
+            'bg-white text-zinc-700 p-2 cursor-pointer shadow rounded-l-md border-r border-gray-300 transition hover:bg-white/50',
             page === 1 &&
               'disabled:bg-white/10 disabled:cursor-no-drop disabled:hover:text-zinc-700'
           )}
@@ -49,8 +50,8 @@ const Pagination = ({ currPage, totalPage, onChange, isLoading }) => {
             onClick={() => onChangePage(item)}
             disabled={isLoading}
             className={cn(
-              'py-2 px-4 text-zinc-700 text-sm border-r cursor-pointer border-gray-300 bg-white transition hover:bg-rose-500 hover:text-white',
-              page === item && 'bg-rose-500 text-white'
+              'py-2 px-4 text-zinc-700 text-sm border-r cursor-pointer border-gray-300 bg-white transition hover:bg-white/50',
+              page === item && 'bg-rose-500 text-white hover:bg-rose-500/90'
             )}
           >
             {item}
@@ -61,7 +62,7 @@ const Pagination = ({ currPage, totalPage, onChange, isLoading }) => {
           onClick={nextPage}
           disabled={page === totalPage}
           className={cn(
-            'bg-white text-zinc-700 p-2 shadow cursor-pointer rounded-r-md transition hover:bg-rose-500 hover:text-white',
+            'bg-white text-zinc-700 p-2 shadow cursor-pointer rounded-r-md transition hover:bg-white/50',
             page === totalPage &&
               'disabled:bg-white/40 disabled:cursor-no-drop disabled:hover:text-zinc-700'
           )}

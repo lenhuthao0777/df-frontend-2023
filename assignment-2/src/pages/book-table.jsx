@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useMemo, useState } from 'react';
 import { Loader2, Trash } from 'lucide-react';
 
 import { cn } from 'lib/utils';
@@ -8,11 +8,20 @@ import Pagination from 'components/pagination';
 import ConfirmModal from './confirm-modal';
 import AddModal from './add-modal';
 import BookService from 'api/book';
+import usePagination from 'hooks/use-pagination';
 
 const limit = 2;
 
 const BookTable = () => {
   const { state, dispatch } = useBook();
+
+  const [tableData, setTableData] = useState({
+    data: [],
+    totalPage: 0,
+  });
+
+  const { pagination } = usePagination();
+
   const [isLoading, setIsLoading] = useState(false);
 
   const [currPage, setCurrPage] = useState(1);
@@ -21,27 +30,23 @@ const BookTable = () => {
     setCurrPage(page);
   };
 
-  const pagination = (data = [], page = 1, limit) => {
-    const trimStart = (page - 1) * limit;
-    const trimEnd = trimStart + limit;
-    const result = data.slice(trimStart, trimEnd);
-    const totalPage = Math.ceil(data.length / limit);
-    return {
-      data: result,
+  const handleMapData = (value) => {
+    const { data, totalPage } = pagination(value, currPage, limit);
+    setTableData({
+      data,
       totalPage,
-    };
+    });
   };
 
-  const getBooks = async (page = 1, limit) => {
+  const getBooks = async () => {
     setIsLoading(true);
     try {
       const res = await BookService.index();
-      const { data, totalPage } = pagination(res, page, limit);
+      handleMapData(res);
       dispatch({
         type: 'setBooks',
         payload: {
-          books: data,
-          totalPage,
+          books: res,
         },
       });
       setIsLoading(false);
@@ -51,12 +56,32 @@ const BookTable = () => {
   };
 
   useEffect(() => {
-    getBooks(currPage, limit);
-  }, [currPage, limit]);
+    getBooks();
+  }, [currPage]);
+
+  const handleSearch = (value) => {
+    const { data, totalPage } = pagination(state.books, currPage, limit);
+
+    const result = data.filter((item) => {
+      return item.name.toLowerCase().includes(value.searchTerm.toLowerCase());
+    });
+
+    if (!value.searchTerm) {
+      setTableData({
+        data: data,
+        totalPage,
+      });
+    } else {
+      setTableData({
+        data: result,
+        totalPage: null,
+      });
+    }
+  };
 
   return (
     <div className='flex flex-col'>
-      <Search />
+      <Search onSearch={handleSearch} />
 
       <div className='mt-3 min-h-[200px] bg-white rounded-md p-5 relative overflow-hidden shadow'>
         <table className='w-full'>
@@ -79,7 +104,7 @@ const BookTable = () => {
 
           <tbody>
             <Fragment>
-              {state.books.map((item, index) => (
+              {tableData.data.map((item, index) => (
                 <tr
                   key={item.id}
                   className={cn(
@@ -132,7 +157,7 @@ const BookTable = () => {
       </div>
 
       <Pagination
-        totalPage={state.totalPage}
+        totalPage={tableData.totalPage}
         currPage={currPage}
         isLoading={isLoading}
         onChange={changePage}
