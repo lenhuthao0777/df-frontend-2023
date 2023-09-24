@@ -9,11 +9,13 @@ const Book = lazy(() => import('./pages/book'));
 function App() {
   return (
     <ThemeProvider>
-      <BookProvider>
-        <Suspense fallback={<Loading />}>
-          <Book />
-        </Suspense>
-      </BookProvider>
+      <div className='w-full h-screen bg-[#d3d3d3] dark:bg-[#313338]'>
+        <BookProvider>
+          <Suspense fallback={<Loading />}>
+            <Book />
+          </Suspense>
+        </BookProvider>
+      </div>
     </ThemeProvider>
   );
 }

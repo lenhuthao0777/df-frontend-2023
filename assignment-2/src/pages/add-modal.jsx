@@ -63,12 +63,16 @@ const AddModal = () => {
       <form onSubmit={handleForm} className='w-full space-y-5'>
         <div className='flex flex-col'>
           <span className='text-xs font-semibold'>Name</span>
-          <Input name='name' onChange={changeValues} />
+          <Input name='name' placeholder='Enter name' onChange={changeValues} />
         </div>
 
         <div className='flex flex-col'>
           <span className='text-xs font-semibold'>Author</span>
-          <Input name='author' onChange={changeValues} />
+          <Input
+            name='author'
+            placeholder='Enter author'
+            onChange={changeValues}
+          />
         </div>
 
         <div className='flex flex-col'>
@@ -82,7 +86,7 @@ const AddModal = () => {
         </div>
 
         <div className='flex justify-end'>
-          <Button type='submit' variant='danger'>
+          <Button isLoading={isLoading} type='submit' variant='danger'>
             Create
           </Button>
         </div>

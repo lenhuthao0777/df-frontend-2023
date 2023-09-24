@@ -83,22 +83,14 @@ const BookTable = () => {
     <div className='flex flex-col'>
       <Search onSearch={handleSearch} />
 
-      <div className='mt-3 min-h-[200px] bg-white rounded-md p-5 relative overflow-hidden shadow'>
+      <div className='mt-3 min-h-[200px] bg-white dark:bg-black rounded-md p-5 relative overflow-hidden shadow'>
         <table className='w-full'>
-          <thead className='bg-gray-100 rounded-t-lg'>
-            <tr>
-              <th className='w-96 p-3 text-sm text-zinc-900 font-extrabold tracking-wide text-left'>
-                Name
-              </th>
-              <th className='w-60 p-3 text-sm text-zinc-900 font-extrabold tracking-wide text-left'>
-                Author
-              </th>
-              <th className='w-60 p-3 text-sm text-zinc-900 font-extrabold tracking-wide text-left'>
-                Topic
-              </th>
-              <th className='w-30 p-3 text-sm text-zinc-900 font-extrabold tracking-wide text-right'>
-                Action
-              </th>
+          <thead className='bg-gray-100 dark:bg-gray-800 rounded-t-lg'>
+            <tr className='dark:text-white text-sm font-extrabold tracking-wide'>
+              <th className='w-96 p-3 text-left'>Name</th>
+              <th className='w-60 p-3 text-left'>Author</th>
+              <th className='w-60 p-3 text-left'>Topic</th>
+              <th className='w-30 p-3 text-right'>Action</th>
             </tr>
           </thead>
 
@@ -108,12 +100,12 @@ const BookTable = () => {
                 <tr
                   key={item.id}
                   className={cn(
-                    'bg-gray-50',
-                    index % 2 === 0 && 'bg-transparent'
+                    'bg-gray-50 dark:bg-gray-700',
+                    (index) % 2 === 0 && 'bg-transparent dark:bg-transparent'
                   )}
                 >
-                  <td className='p-4 text-sm text-zinc-700'>{item.name}</td>
-                  <td className='p-4 text-sm text-zinc-700'>{item.author}</td>
+                  <td className='p-4 text-sm text-zinc-700 dark:text-white'>{item.name}</td>
+                  <td className='p-4 text-sm text-zinc-700 dark:text-white'>{item.author}</td>
                   <td className='p-4'>
                     <span
                       className={cn(
@@ -129,7 +121,7 @@ const BookTable = () => {
                       {item.topic}
                     </span>
                   </td>
-                  <td className='p-4 text-sm text-zinc-700 flex items-center justify-end'>
+                  <td className='p-4 text-sm text-zinc-700 dark:text-white flex items-center justify-end'>
                     <p
                       onClick={() =>
                         dispatch({
