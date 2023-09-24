@@ -25,8 +25,6 @@ const ThemeProvider = ({ children }) => {
     );
   };
 
-  console.log(isDarkMode);
-
   return (
     <ThemeContext.Provider value={{ setIsDarkMode, ButtonMode }}>
       {children}
