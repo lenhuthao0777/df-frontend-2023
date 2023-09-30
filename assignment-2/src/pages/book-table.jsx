@@ -50,7 +50,7 @@ const BookTable = () => {
     if (!data.length && page > 1) {
       setDataTable(data);
       setPgn({
-        page: page--,
+        page: page - 1,
         totalPage,
       });
     } else {
