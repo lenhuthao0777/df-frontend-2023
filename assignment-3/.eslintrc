@@ -27,7 +27,8 @@
         "react/react-in-jsx-scope": "off",
         "react/jsx-sort-props": "off",
         "react/function-component-definition": "off",
-        "no-shadow": "off"
+        "no-shadow": "off",
+        "react/no-unstable-nested-components": "off"
       }
     }
   ]
