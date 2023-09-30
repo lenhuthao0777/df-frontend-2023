@@ -1,5 +1,5 @@
-import { Fragment, useEffect, useMemo, useState } from 'react';
-import { Loader2, Trash } from 'lucide-react';
+import { Fragment, useEffect, useState } from 'react';
+import { Trash } from 'lucide-react';
 
 import { cn } from 'lib/utils';
 import { useBook } from 'providers/book-provider';
@@ -69,7 +69,7 @@ const BookTable = () => {
   return (
     <>
       <Search onSearch={handleSearch} />
-      <div className='bg-white dark:bg-[#252525] p-5 rounded-md shadow mt-2'>
+      <div className='bg-white dark:bg-black p-5 rounded-md shadow mt-2'>
         <table className='w-full mb-5'>
           <thead className='bg-gray-200 dark:bg-[#272827] rounded-t-lg border-b border-gray-200 dark:border-gray-700'>
             <tr className='dark:text-white text-sm font-extrabold tracking-wide'>

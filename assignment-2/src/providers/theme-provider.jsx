@@ -11,6 +11,7 @@ const ThemeProvider = ({ children }) => {
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark');
+    document.body.style.backgroundColor = isDarkMode ? '#2A2C2C' : '#D3D3D3';
   }, [isDarkMode]);
 
   const ButtonMode = () => {

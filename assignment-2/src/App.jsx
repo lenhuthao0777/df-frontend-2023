@@ -10,7 +10,7 @@ const Book = lazy(() => import('./pages/book'));
 function App() {
   return (
     <ThemeProvider>
-      <div className='w-full h-screen bg-[#D3D3D3] dark:bg-[#2A2C2C]'>
+      <div className='w-full h-screen'>
         <BookProvider>
           <Suspense fallback={<Loading />}>
             <Header />
