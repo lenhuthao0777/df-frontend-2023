@@ -26,7 +26,7 @@ const BookTable = () => {
 
   const dataLocal: DataLocalType[] = JSON.parse(
     localStorage.getItem('books') as string,
-  )
+  ) || []
 
   const [pgn, setPgn] = useState<{ page: number; totalPage: number | null }>({
     page: 1,

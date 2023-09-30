@@ -1,7 +1,6 @@
 import {
   createContext,
   useContext,
-  useEffect,
   useMemo,
   useReducer,
 } from 'react'
@@ -104,13 +103,13 @@ const reducer = (state, action) => {
 const BookProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  useEffect(() => {
-    const isData = localStorage.getItem('books')
+  // useEffect(() => {
+  //   const isData = localStorage.getItem('books')
 
-    if (!isData?.length) {
-      localStorage.setItem('books', JSON.stringify(initialState.books))
-    }
-  }, [])
+  //   if (!isData?.length) {
+  //     localStorage.setItem('books', JSON.stringify(initialState.books))
+  //   }
+  // }, [])
 
   return (
     <BookContext.Provider
