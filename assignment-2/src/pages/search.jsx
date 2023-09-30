@@ -24,7 +24,7 @@ const Search = ({ onSearch }) => {
   };
 
   return (
-    <div className='flex items-center justify-end bg-white py-3 px-3 rounded-md shadow-sm dark:bg-[#252525]'>
+    <div className='flex items-center justify-end bg-white py-3 px-3 rounded-md shadow-sm dark:bg-black'>
       <Input
         onChange={handleSearch}
         className='w-60'

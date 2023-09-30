@@ -2,7 +2,7 @@ import { cn } from 'lib/utils';
 import { useEffect, useState } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 
-const Pagination = ({ currPage, totalPage, onChange, isLoading }) => {
+const Pagination = ({ currPage, totalPage, onChange }) => {
   const [page, setPage] = useState(currPage);
 
   const pages = [...Array(totalPage).keys()].map((x) => x + 1);
