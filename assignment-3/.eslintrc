@@ -15,7 +15,7 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "project": ["./tsconfig.json"],
+    "project": ["tsconfig.json"],
     "createDefaultProgram": true,
     "sourceType": "module"
   },
@@ -23,11 +23,17 @@
   "overrides": [
     {
       "files": ["**/*.ts?(x)", "**/*.js?(x)"],
+      "parserOptions": {
+        "project": ["**/tsconfig.json"]
+      },
       "rules": {
         "react/react-in-jsx-scope": "off",
         "react/jsx-sort-props": "off",
         "react/function-component-definition": "off",
-        "no-shadow": "off"
+        "no-shadow": "off",
+        "react/no-unstable-nested-components": "off",
+        "@typescript-eslint/no-unused-expressions": "off",
+        "object-shorthand": "off"
       }
     }
   ]

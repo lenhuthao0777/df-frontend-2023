@@ -15,7 +15,7 @@ function App() {
           <Suspense fallback={<Loading />}>
             <Header />
 
-            <div className='container mx-auto pt-24'>
+            <div className='container'>
               <Book />
             </div>
           </Suspense>
