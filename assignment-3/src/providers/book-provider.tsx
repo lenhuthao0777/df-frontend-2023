@@ -42,6 +42,12 @@ const initialState: InitialState = {
       author: 'Gene Kim',
       topic: 'Devops',
     },
+    {
+      id: uuid(),
+      name: 'The Asura Project',
+      author: 'Korean member',
+      topic: 'Devops',
+    },
   ],
   totalPage: null,
   isLoading: false,
