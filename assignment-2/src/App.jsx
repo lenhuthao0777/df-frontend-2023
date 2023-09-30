@@ -3,21 +3,28 @@ import { Suspense, lazy } from 'react';
 import { BookProvider } from 'providers/book-provider';
 import { ThemeProvider } from 'providers/theme-provider';
 import Loading from 'components/ui/loading';
+import Header from 'components/header';
 
 const Book = lazy(() => import('./pages/book'));
 
 function App() {
   return (
     <ThemeProvider>
-      <div className='w-full h-screen bg-[#d3d3d3] dark:bg-[#313338]'>
+      <div className='w-full h-screen bg-[#D3D3D3] dark:bg-[#2A2C2C]'>
         <BookProvider>
           <Suspense fallback={<Loading />}>
-            <Book />
+            <Header />
+
+            <div className='container mx-auto mt-24'>
+              <Book />
+            </div>
           </Suspense>
         </BookProvider>
       </div>
     </ThemeProvider>
   );
 }
+
+// #252525
 
 export default App;

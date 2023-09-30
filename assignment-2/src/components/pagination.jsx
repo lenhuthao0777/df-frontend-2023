@@ -1,5 +1,5 @@
 import { cn } from 'lib/utils';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 
 const Pagination = ({ currPage, totalPage, onChange, isLoading }) => {
@@ -27,49 +27,58 @@ const Pagination = ({ currPage, totalPage, onChange, isLoading }) => {
     });
   };
 
+  useEffect(()=>{
+    setPage(currPage)
+  },[currPage])
+
   if (!totalPage) return null;
 
   return (
     <div className='flex justify-end w-full mt-5'>
-      <div className='flex items-center'>
-        <button
-          onClick={prePage}
-          disabled={page === 1}
-          className={cn(
-            'bg-white text-zinc-700 p-2 cursor-pointer shadow rounded-l-md border-r border-gray-300 transition hover:bg-white/50  dark:bg-gray-700 dark:text-white dark:hover:bg-gray-50 dark:hover:text-black',
-            page === 1 &&
-              'disabled:bg-white/10 disabled:cursor-no-drop disabled:hover:text-zinc-700 dark:disabled:bg-gray-300'
-          )}
-        >
-          <ChevronLeft className='w-5 h-5' />
-        </button>
-
-        {pages.map((item) => (
+      <ul className='flex items-center'>
+        <li>
           <button
-            key={item}
-            onClick={() => onChangePage(item)}
-            disabled={isLoading}
+            onClick={prePage}
+            disabled={page === 1}
             className={cn(
-              'py-2 px-4 text-zinc-700 text-sm border-r cursor-pointer border-gray-300 bg-white transition hover:bg-white/50 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-50 dark:hover:text-black',
-              page === item && 'bg-rose-500 text-white hover:bg-rose-500/90 dark:bg-gray-50 dark:text-black'
+              'min-w-[25px] h-[25px] leading-6 border border-transparent flex items-center justify-center hover:text-rose-400 dark:hover:text-rose-400 transition dark:text-gray-100',
+              page === 1 &&
+                'disabled:cursor-no-drop disabled:text-gray-400 dark:disabled:text-gray-400'
             )}
           >
-            {item}
+            <ChevronLeft className='w-5 h-5' />
           </button>
+        </li>
+
+        {pages.map((item) => (
+          <li key={item}>
+            <button
+              className={cn(
+                'min-w-[24px] h-6 text-sm leading-6 border border-transparent flex items-center justify-center hover:text-rose-400 dark:hover:text-rose-400 dark:text-gray-100',
+                page === item &&
+                  'border-rose-400 text-rose-400 dark:text-rose-400'
+              )}
+              onClick={() => onChangePage(item)}
+            >
+              {item}
+            </button>
+          </li>
         ))}
 
-        <button
-          onClick={nextPage}
-          disabled={page === totalPage}
-          className={cn(
-            'bg-white text-zinc-700 p-2 shadow cursor-pointer rounded-r-md transition hover:bg-white/50 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-50 dark:hover:text-black',
-            page === totalPage &&
-              'disabled:bg-white/40 disabled:cursor-no-drop disabled:hover:text-zinc-700 dark:disabled:bg-gray-300'
-          )}
-        >
-          <ChevronRight className='w-5 h-5' />
-        </button>
-      </div>
+        <li>
+          <button
+            onClick={nextPage}
+            disabled={page === totalPage}
+            className={cn(
+              'min-w-[25px] h-[25px] leading-6 border border-transparent flex items-center justify-center hover:text-rose-400 dark:hover:text-rose-400 transition dark:text-gray-100',
+              page === totalPage &&
+                'disabled:cursor-no-drop disabled:text-gray-400 dark:disabled:text-gray-400'
+            )}
+          >
+            <ChevronRight className='w-5 h-5' />
+          </button>
+        </li>
+      </ul>
     </div>
   );
 };
