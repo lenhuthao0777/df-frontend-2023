@@ -7,9 +7,8 @@ const Book = () => {
   return (
     <Fragment>
       <Header />
-      <div className='container mx-auto pt-24'>
-        <BookTable />
-      </div>
+
+      <BookTable />
     </Fragment>
   );
 };

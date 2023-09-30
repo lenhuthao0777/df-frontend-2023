@@ -9,7 +9,9 @@ const Header = () => {
         <h2 className='text-xl dark:text-white font-extrabold'>Book store</h2>
         <div className='flex items-center'>
           <ButtonMode />
-          <User className='w-6 h-6 rounded-full shadow border border-zinc-700 dark:border-white' />
+          <div className='flex items-center justify-center w-10 h-10 border border-zinc-900 dark:border-white rounded-full overflow-hidden ml-2'>
+            <User className='w-5 h-5' />
+          </div>
           <p className='ml-2 font-semibold text-sm'>Jayco</p>
         </div>
       </div>

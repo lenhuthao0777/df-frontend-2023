@@ -24,11 +24,11 @@ const Search = ({ onSearch }) => {
   };
 
   return (
-    <div className='flex items-center justify-end'>
+    <div className='flex items-center justify-end bg-white py-3 px-3 rounded-md shadow-sm dark:bg-[#252525]'>
       <Input
         onChange={handleSearch}
         className='w-60'
-        placeholder='Search by name'
+        placeholder='Search...'
       />
       <Button
         variant='danger'

@@ -24,19 +24,19 @@ const Modal = ({ open, title = '', subtitle = '', children, onClose }) => {
       )}
       id='outside'
     >
-      <div className='bg-white w-96 min-h-[200px] p-5 rounded-md shadow'>
+      <div className='bg-white dark:bg-[#252525] w-96 min-h-[200px] p-5 rounded-md shadow'>
         <div className='flex items-end justify-end'>
           <div className='flex items-center justify-between w-full'>
-            <h2 className='text-lg font-semibold'>{title}</h2>
+            <h2 className='text-lg font-semibold dark:text-white'>{title}</h2>
             <span className='p-3 rounded-full cursor-pointer'>
               <X
-                className='w-5 h-5 text-zinc-900 font-semibold'
+                className='w-5 h-5 text-zinc-900 font-semibold dark:text-white'
                 onClick={() => onClose()}
               />
             </span>
           </div>
         </div>
-        <p className='mt-2 text-sm text-gray-500'>{subtitle}</p>
+        <p className='mt-2 text-sm text-gray-500 dark:text-white'>{subtitle}</p>
         {children}
       </div>
     </div>

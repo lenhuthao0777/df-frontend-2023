@@ -1,10 +1,11 @@
-import BookService from 'api/book';
+import { useState } from 'react';
+
 import { Button } from 'components/ui/button';
 import { Input } from 'components/ui/input';
 import Modal from 'components/ui/modal';
 import Select from 'components/ui/select';
 import { useBook } from 'providers/book-provider';
-import { useState } from 'react';
+import { v4 as uuid } from 'uuid';
 
 const AddModal = () => {
   const { state, dispatch } = useBook();
@@ -46,28 +47,40 @@ const AddModal = () => {
   };
 
   const handleForm = async (e) => {
+    e.preventDefault();
     setIsLoading(true);
-    try {
-      e.preventDefault();
-      await BookService.store(values);
-      setIsLoading(false);
+    const dataLocal = JSON.parse(localStorage.getItem('books'));
+    dataLocal.push({
+      id: uuid(),
+      name: values.name,
+      author: values.author,
+      topic: values.topic,
+    });
+
+    setTimeout(() => {
+      if (values) {
+        const newData = JSON.stringify(dataLocal);
+        localStorage.setItem('books', newData);
+      }
       handleClose();
-      window.location.reload();
-    } catch (error) {
-      return error;
-    }
+      setIsLoading(false);
+    }, 1000);
   };
 
   return (
     <Modal open={isOpen} onClose={handleClose} title='Add book'>
-      <form onSubmit={handleForm} className='w-full space-y-5'>
+      <form onSubmit={handleForm} className='w-full space-y-5 dark:text-white'>
         <div className='flex flex-col'>
-          <span className='text-xs font-semibold'>Name</span>
+          <label htmlFor='name' className='text-xs font-semibold'>
+            Name
+          </label>
           <Input name='name' placeholder='Enter name' onChange={changeValues} />
         </div>
 
         <div className='flex flex-col'>
-          <span className='text-xs font-semibold'>Author</span>
+          <label htmlFor='author' className='text-xs font-semibold'>
+            Author
+          </label>
           <Input
             name='author'
             placeholder='Enter author'
@@ -76,7 +89,9 @@ const AddModal = () => {
         </div>
 
         <div className='flex flex-col'>
-          <span className='text-xs font-semibold'>Topic</span>
+          <label htmlFor='topic' className='text-xs font-semibold'>
+            Topic
+          </label>
           <Select
             options={options}
             name='topic'

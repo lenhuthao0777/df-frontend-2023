@@ -18,20 +18,24 @@ const ConfirmModal = () => {
 
   const handleDelete = async () => {
     setIsLoading(true);
-    try {
-      await BookService.destroy(state.bookId);
+    const dataLocal = JSON.parse(localStorage.getItem('books')) || [];
+
+    const findBook = dataLocal.findIndex((book) => book.id === state.bookId);
+
+    dataLocal.splice(findBook, 1);
+
+    setTimeout(() => {
+      const newData = JSON.stringify(dataLocal);
+      localStorage.setItem('books', newData);
       setIsLoading(false);
       handleClose();
-      window.location.reload();
-    } catch (error) {
-      return error;
-    }
+    }, 1000);
   };
 
   return (
     <Fragment>
       <Modal open={isOpen} onClose={handleClose}>
-        <div className='mt-2'>
+        <div className='mt-2 dark:text-white'>
           <h2 className='text-center text-lg font-semibold'>Delete book</h2>
           <div className='text-center mt-2'>
             <p className='text-sm'>Do you want to delete</p>
@@ -42,12 +46,16 @@ const ConfirmModal = () => {
           <div className='flex items-center justify-evenly mt-10'>
             <Button
               variant='outline'
-              disable={isLoading}
+              isLoading={isLoading}
               onClick={() => dispatch({ type: 'onClose' })}
             >
               Cancel
             </Button>
-            <Button disable={isLoading} variant='danger' onClick={handleDelete}>
+            <Button
+              variant='danger'
+              isLoading={isLoading}
+              onClick={handleDelete}
+            >
               Delete
             </Button>
           </div>

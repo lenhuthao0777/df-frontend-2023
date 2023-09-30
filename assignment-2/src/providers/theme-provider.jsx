@@ -15,13 +15,15 @@ const ThemeProvider = ({ children }) => {
 
   const ButtonMode = () => {
     return (
-      <Button onClick={() => setIsDarkMode(!isDarkMode)} className='mr-2'>
-        {isDarkMode ? (
-          <Moon className='w-5 h-5' />
-        ) : (
-          <SunMoon className='w-5 h-5' />
-        )}
-      </Button>
+      <div className='flex items-center justify-center h-10 w-10 border border-zinc-900 dark:border-white rounded-full'>
+        <Button onClick={() => setIsDarkMode(!isDarkMode)}>
+          {isDarkMode ? (
+            <Moon className='w-5 h-5' />
+          ) : (
+            <SunMoon className='w-5 h-5' />
+          )}
+        </Button>
+      </div>
     );
   };
 

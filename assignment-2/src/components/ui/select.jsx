@@ -9,7 +9,7 @@ const Select = ({ options = [], placeholder = '', onChange, name }) => {
         id='topic'
         name={name}
         onChange={handleChange}
-        className='border border-gray-300 bg-transparent text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 '
+        className='border border-gray-300 bg-transparent text-gray-900 dark:text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 '
       >
         <option defaultValue>{placeholder}</option>
         {options.map((item) => (
