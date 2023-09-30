@@ -1,44 +1,40 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useLayoutEffect, useState } from 'react'
 import { ChevronRight, ChevronLeft } from 'lucide-react'
 
 import { cn } from '../lib/utils'
 
 interface PaginationProps {
   currPage: number
-  totalPage: number
-  onChange?: (page: number) => void
+  totalPage: number | null
+  onChange: (page: number) => void
 }
 
-const Pagination: FC<PaginationProps> = ({
-  currPage,
-  totalPage,
-  onChange,
-}) => {
-  const [page, setPage] = useState<number>(currPage)
+const Pagination: FC<PaginationProps> = ({ currPage, totalPage, onChange }) => {
+  const [page, setPage] = useState<number>(() => currPage)
 
   const pages = [...Array(totalPage).keys()].map((x) => x + 1)
 
   const onChangePage = (number) => {
     if (number !== page) {
       setPage(number)
-      onChange && onChange(number)
+      onChange(number)
     }
   }
 
   const nextPage = () => {
     setPage((curr) => {
-      onChange && onChange(curr + 1)
+      onChange(curr + 1)
       return curr + 1
     })
   }
   const prePage = () => {
     setPage((curr) => {
-      onChange && onChange(curr - 1)
+      onChange(curr - 1)
       return curr - 1
     })
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setPage(currPage)
   }, [currPage])
 
@@ -66,7 +62,7 @@ const Pagination: FC<PaginationProps> = ({
             <button
               className={cn(
                 'min-w-[24px] h-6 text-sm leading-6 border border-transparent flex items-center justify-center hover:text-rose-400 dark:hover:text-rose-400 dark:text-gray-100',
-                page === item &&
+                (page === item || currPage === item) &&
                   'border-rose-400 text-rose-400 dark:text-rose-400',
               )}
               onClick={() => onChangePage(item)}

@@ -1,5 +1,7 @@
+import BookTable from './book-table'
+
 const Book = () => {
-  return <div className="text-red-500">Book</div>
+  return <BookTable />
 }
 
 export default Book

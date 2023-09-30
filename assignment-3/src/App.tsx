@@ -8,7 +8,7 @@ function App() {
     <ThemeProvider>
       <BookProvider>
         <Header />
-        <div className="container pt-24">
+        <div className="container mx-auto pt-24">
           <Book />
         </div>
       </BookProvider>

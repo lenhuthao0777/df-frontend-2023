@@ -15,7 +15,7 @@ const Select: FC<SelectProps> = ({
 }) => {
   const handleChange = (e) => {
     e.preventDefault()
-    onChange && onChange(e)
+    onChange(e)
   }
 
   return (

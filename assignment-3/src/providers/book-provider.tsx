@@ -22,16 +22,6 @@ interface InitialState {
   bookId: string | null
 }
 
-const BookContext = createContext<{
-  state: InitialState | null
-  dispatch: ({ type, payload }: { type: string; payload: any }) => void
-}>({
-  state: null,
-  dispatch: () => {},
-})
-
-export const useBook = () => useContext(BookContext)
-
 const initialState: InitialState = {
   books: [
     {
@@ -60,6 +50,16 @@ const initialState: InitialState = {
   name: '',
   bookId: null,
 }
+
+const BookContext = createContext<{
+  state: InitialState
+  dispatch: ({ type, payload }: { type?: string; payload?: any }) => void
+}>({
+  state: { ...initialState },
+  dispatch: () => {},
+})
+
+export const useBook = () => useContext(BookContext)
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -101,7 +101,7 @@ const BookProvider = ({ children }) => {
   useEffect(() => {
     const isData = localStorage.getItem('books')
 
-    if (!isData) {
+    if (!isData?.length) {
       localStorage.setItem('books', JSON.stringify(initialState.books))
     }
   }, [])
