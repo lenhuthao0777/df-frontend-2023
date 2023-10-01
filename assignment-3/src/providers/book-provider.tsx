@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useReducer,
-} from 'react'
+import { createContext, useContext, useMemo, useReducer } from 'react'
 import { v4 as uuid } from 'uuid'
 
 interface InitialState {
@@ -61,7 +55,7 @@ const BookContext = createContext<{
   state: InitialState
   dispatch: ({ type, payload }: { type?: string; payload?: any }) => void
 }>({
-  state: { ...initialState },
+  state: initialState,
   dispatch: () => {},
 })
 
@@ -104,13 +98,13 @@ const reducer = (state, action) => {
 const BookProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  useEffect(() => {
-    const isData = localStorage.getItem('books')
+  // useEffect(() => {
+  //   const isData = localStorage.getItem('books')
 
-    if (!isData?.length) {
-      localStorage.setItem('books', JSON.stringify(initialState.books))
-    }
-  }, [])
+  //   if (!isData?.length) {
+  //     localStorage.setItem('books', JSON.stringify(initialState.books))
+  //   }
+  // }, [])
 
   return (
     <BookContext.Provider
