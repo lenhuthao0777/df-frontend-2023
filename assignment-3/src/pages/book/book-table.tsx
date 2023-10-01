@@ -24,9 +24,8 @@ const BookTable = () => {
 
   const [dataTable, setDataTable] = useState([])
 
-  const dataLocal: DataLocalType[] = JSON.parse(
-    localStorage.getItem('books') as string,
-  ) || []
+  const dataLocal: DataLocalType[] =
+    JSON.parse(localStorage.getItem('books') as string) || []
 
   const [pgn, setPgn] = useState<{ page: number; totalPage: number | null }>({
     page: 1,
@@ -54,23 +53,6 @@ const BookTable = () => {
       setPgn((pre) => ({ ...pre, page, totalPage }))
     }
   }
-
-  // const handleSetData = (currPage: number) => {
-  //   const { data, totalPage, page } = pagination(dataLocal, currPage, LIMIT)
-  //   if (!data.length && page > 1) {
-  //     setPgn({
-  //       page: page - 1,
-  //       totalPage,
-  //     })
-  //     setDataTable(data)
-  //   } else {
-  //     setDataTable(data)
-  //     setPgn({
-  //       page,
-  //       totalPage,
-  //     })
-  //   }
-  // }
 
   const handleChangePage = (page: number) => {
     setPgn((pre) => ({

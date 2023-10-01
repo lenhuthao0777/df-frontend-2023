@@ -1,9 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useMemo,
-  useReducer,
-} from 'react'
+import { createContext, useContext, useMemo, useReducer } from 'react'
 import { v4 as uuid } from 'uuid'
 
 interface InitialState {
@@ -60,7 +55,7 @@ const BookContext = createContext<{
   state: InitialState
   dispatch: ({ type, payload }: { type?: string; payload?: any }) => void
 }>({
-  state: { ...initialState },
+  state: initialState,
   dispatch: () => {},
 })
 

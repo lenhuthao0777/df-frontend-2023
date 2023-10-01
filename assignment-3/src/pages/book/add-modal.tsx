@@ -66,9 +66,9 @@ const AddModal = () => {
     } else {
       setValidate('')
       setIsLoading(true)
-      const dataLocal: DataLocalType[] = JSON.parse(
-        localStorage.getItem('books') as string,
-      )
+      const dataLocal: DataLocalType[] =
+        JSON.parse(localStorage.getItem('books') as string) || []
+
       dataLocal.push({
         id: uuid(),
         name: values?.name,
