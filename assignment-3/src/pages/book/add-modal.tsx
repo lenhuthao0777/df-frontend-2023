@@ -81,6 +81,11 @@ const AddModal = () => {
           const newData = JSON.stringify(dataLocal)
           localStorage.setItem('books', newData)
         }
+        setValues({
+          name: '',
+          author: '',
+          topic: '',
+        })
         handleClose()
         setIsLoading(false)
       }, 1000)
