@@ -9,10 +9,10 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'next',
     'next/core-web-vitals',
+    'prettier',
   ],
-  ignorePatterns: [
-    'node_modules/',
-  ],
+  plugins: ['prettier'],
+  ignorePatterns: ['node_modules/'],
   env: {
     es6: true,
     browser: true,
@@ -35,7 +35,35 @@ module.exports = {
       presets: [require.resolve('next/babel')],
     },
   },
-  rules: {},
+  rules: {
+    'prettier/prettier': [
+      'warn',
+      {
+        bracketSpacing: true,
+        bracketSameLine: false,
+        jsxSingleQuote: false,
+        printWidth: 80,
+        proseWrap: 'always',
+        semi: false,
+        singleQuote: true,
+        tabWidth: 2,
+        trailingComma: 'all',
+        htmlWhitespaceSensitivity: 'ignore',
+      },
+    ],
+    'react/jsx-curly-brace-presence': 'off',
+    'import/extensions': 'off',
+    'react/jsx-no-constructed-context-values': 'off',
+    'vars-on-top': 'off',
+    'no-var': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/ban-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'warn',
+    'default-case': 'off',
+    'object-shorthand': 'warn',
+    '@typescript-eslint/no-unused-vars': 'off',
+    "@typescript-eslint/return-await": "off"
+  },
   overrides: [
     {
       files: ['**/*.ts?(x)', '**/*.js?(x)'],
