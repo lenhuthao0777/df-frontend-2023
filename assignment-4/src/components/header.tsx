@@ -11,7 +11,7 @@ const Header = () => {
         <h2 className="text-2xl dark:text-white font-extrabold">Book store</h2>
         <div className="flex items-center">
           <ModeToggle />
-          <Avatar className="w-10 h-10 ml-2">
+          <Avatar className="w-10 h-10 ml-3">
             <AvatarFallback>JH</AvatarFallback>
           </Avatar>
         </div>
